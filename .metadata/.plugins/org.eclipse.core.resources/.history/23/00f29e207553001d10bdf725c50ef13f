@@ -1,0 +1,34 @@
+package com.experion.assignment;
+
+import java.util.Scanner;
+
+public class Question08_Sum {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter size of array");
+		int number = scanner.nextInt();
+		int array[] = new int[number];
+
+		System.out.println("Enter the array elements numbers");
+		for (int index = 0; index < array.length; index++) {
+			array[index] = scanner.nextInt();
+		}
+		int sumTracker = 0;
+		for (int index = 0; index < array.length; index++) {
+
+			for (int innerIndex = index + 1; innerIndex < array.length; innerIndex++) {
+				if (array[index] + array[innerIndex] == 8) {
+					sumTracker++;
+					System.out.println("The array elements that add upto 8 are: " + array[index] + "   and  "
+							+ array[innerIndex] + "  at" + index + "  and  " + innerIndex);
+					break;
+				}
+			}
+		}
+
+		if (sumTracker == 0)
+			System.out.print("No array elements add upto 8");
+	}
+}

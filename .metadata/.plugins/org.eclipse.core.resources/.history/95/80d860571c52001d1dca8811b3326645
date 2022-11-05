@@ -1,0 +1,22 @@
+package com.experion.assignment;
+
+import java.util.Scanner;
+
+public class PatternTwo {
+
+	public static void main(String[] args) {
+
+		int number;
+		System.out.println("Enter a number :");
+		Scanner scanner = new Scanner(System.in);
+		number = scanner.nextInt();
+		for(int index = 1; index <= number; index++) {
+			for (int j = 0; j <= index; j++) {
+		        System.out.print( index + "	");
+		      }
+		      System.out.println();
+		}
+		
+	}
+
+}

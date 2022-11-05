@@ -1,0 +1,31 @@
+package com.experion.assignment;
+
+import java.util.Scanner;
+
+public class Question05_SumOfSeries {
+
+	public static void main(String[] args) {
+
+
+		Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter range of the series");
+        int rangeVariable = scanner.nextInt();
+        int valueTracker = 1;
+        int positionTracker = 1;
+        double seriesSum = 0;
+        for (int count = 1; count <= rangeVariable; count++) {
+            if (positionTracker % 2 == 0)
+                seriesSum = seriesSum - Math.pow(valueTracker, count);
+            else
+                seriesSum = seriesSum + Math.pow(valueTracker, count);
+            valueTracker += 2;
+            positionTracker += 1;
+
+
+
+       }
+        System.out.println("Sum of series is:" + seriesSum);
+
+	}
+
+}

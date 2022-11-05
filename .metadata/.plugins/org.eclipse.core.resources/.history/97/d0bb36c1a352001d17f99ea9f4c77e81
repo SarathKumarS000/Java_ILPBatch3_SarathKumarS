@@ -1,0 +1,16 @@
+package com.experion.assignment;
+
+import java.util.Scanner;
+
+public class Question16_ReplaceCharacter {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		 
+        System.out.print("Enter a Sentence : ");
+        String sentence = scanner.nextLine();
+
+	}
+
+}

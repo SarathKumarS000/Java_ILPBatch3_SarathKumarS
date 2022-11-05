@@ -1,0 +1,87 @@
+package com.bank.service;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+import com.bank.entity.Rate;
+import com.bank.entity.Service;
+
+public class BankService {
+
+	public static Service createService() {
+		
+//		Taking input from user to create service
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the following details to create service");
+		System.out.println("Service Code : ");
+		String serviceCode = scanner.nextLine();
+		System.out.println("Service Name : ");
+		String serviceName = scanner.nextLine();
+		System.out.println("Service Description : ");
+		String serviceDesc = scanner.nextLine();
+		System.out.println("Open Date : ");
+		String openDate = scanner.nextLine();
+		System.out.println("Validity Date : ");
+		String validityDate = scanner.nextLine();
+		System.out.println("Expiry Date : ");
+		String expiryDate = scanner.nextLine();
+		
+//		String To Date Conversion
+		Date openDateConverted = stringToDate(openDate);
+		Date validityDateConverted = stringToDate(validityDate);
+		Date expiryDateConverted = stringToDate(openDate);
+
+		
+//		Creation of Service object
+		Service service = new Service("SCD100", "Cash Deposit", "Cash Deposit", new Date(2022, 10, 27),
+				new Date(2022, 10, 27), new Date(2022, 10, 27));
+		return service;
+	}
+
+	public static void createRateCard(Service service) {
+
+		Rate rate = new Rate();
+		int[] min = new int[3];
+		int[] max = new int[3];
+		double[] fees = new double[3];
+
+		min[0] = 0;
+		min[1] = 2000;
+		min[2] = 5000;
+
+		max[0] = 2000;
+		max[1] = 5000;
+		max[2] = 999999;
+
+		fees[0] = 0.25;
+		fees[1] = 0.5;
+		fees[2] = 0.1;
+
+		service.setRate(rate);
+		service.getRate().setMin(min);
+		service.getRate().setMax(max);
+		service.getRate().setRate(fees);
+
+	}
+
+	public static void displayDetails(Service service) {
+
+		System.out.println(service);
+		System.out.println(service.getRate());
+
+	}
+
+	public static Date stringToDate(String dateString) {
+		Date convertedDate = null;
+		try {
+			convertedDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		return convertedDate;
+	}
+}

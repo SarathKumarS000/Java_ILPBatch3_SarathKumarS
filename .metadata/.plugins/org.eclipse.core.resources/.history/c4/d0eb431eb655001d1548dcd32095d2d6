@@ -1,0 +1,15 @@
+package com.bank.entity;
+
+import java.util.Date;
+
+public class Rate {
+
+	private String serviceCode;
+	private String serviceName;
+	private String serviceDesc;
+	private Date openDate;
+	private Date validityDate;
+	private Date expiryDate;
+	
+	
+}

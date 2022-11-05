@@ -1,0 +1,89 @@
+package com.experion.utility;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+
+import com.experion.entity.Customer;
+import com.experion.entity.Product;
+import com.experion.service.Service;
+
+public class ProductUtility {
+
+	public static void main(String[] args) throws ParseException {
+		char mainChoice = 'y';
+		Product product = null;
+		Product selectedProduct = null;
+		Scanner scanner = new Scanner(System.in);
+		ArrayList<Product> productList = new ArrayList<Product>();
+		ArrayList<Customer> customerList = new ArrayList<Customer>();
+		Customer customer = null;
+		do {
+			System.out.println("1. Manager		2. Customer");
+			int user = scanner.nextInt();
+			switch (user) {
+			case 1:
+				char add = 'y';
+				do {
+					System.out.println("1. Create Fabric Product	2. Create Electronic Product");
+					int choice = scanner.nextInt();
+					switch (choice) {
+					case 1:
+						productList.add(Service.createProduct("Fabrics"));
+						break;
+
+					case 2:
+						productList.add(Service.createProduct("Electronics"));
+						break;
+					}
+					System.out.println("Do you want to add more products (y/n) :");
+					add = scanner.next().charAt(0);
+				} while (add == 'y');
+				break;
+			case 2:
+				char cont = 'y';
+				char buy = 'y';
+				char service = 'y';
+				do {
+					System.out.println("1.Buy Product	2. Product Services");
+					int choice = scanner.nextInt();
+					switch (choice) {
+					case 1:
+						do {
+							scanner.nextLine();
+							System.out.println("Enter Customer Code : ");
+							String customerCode = scanner.nextLine();
+							selectedProduct = Service.buyProduct(productList, customerList, customerCode);
+							if (selectedProduct != null) {
+								System.out.println("Enter Customer Name : ");
+								String customerName = scanner.nextLine();
+								customerList.add(customer = new Customer(customerCode, customerName, selectedProduct));
+								System.out.println("Do you want to buy more products (y/n):");
+								buy = scanner.next().charAt(0);
+								break;
+							} else {
+								buy = 'n';
+								break;
+							}
+						} while (buy == 'y');
+						break;
+					case 2:
+						do {
+							Date currentDate = new Date();
+							Service.getProductService(currentDate, customerList);
+							System.out.println("Do you have more products for service (y/n):");
+							service = scanner.next().charAt(0);
+							break;
+						} while (service == 'y');
+					}
+					System.out.println("Want to purchase or is there anything for service (y/n)?");
+					cont = scanner.next().charAt(0);
+				} while (cont == 'y');
+			}
+			System.out.println("Do you want to continue (y/n):");
+			mainChoice = scanner.next().charAt(0);
+		} while (mainChoice == 'y');
+
+	}
+}

@@ -1,0 +1,155 @@
+package com.experion.service;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+
+import com.experion.entity.Customer;
+import com.experion.entity.Electronics;
+import com.experion.entity.Fabrics;
+import com.experion.entity.Product;
+
+public class Service {
+
+	public static Product createProduct(String productType) throws ParseException {
+		Scanner scanner = new Scanner(System.in);
+		Product product = null;
+
+		System.out.println("Enter Product Code : ");
+		String productCode = scanner.nextLine();
+		System.out.println("Enter Product Name : ");
+		String productName = scanner.nextLine();
+		System.out.println("Enter Product Price : ");
+		double productPrice = scanner.nextDouble();
+		scanner.nextLine();
+
+		if (productType.compareTo("Fabrics") == 0) {
+			product = new Fabrics(productCode, productName, productPrice);
+		} else if (productType.compareTo("Electronics") == 0) {
+			System.out.println("Enter the service charge : ");
+			int serviceCharge = scanner.nextInt();
+			scanner.nextLine();
+			System.out.println("Enter Warranty Date (dd/MM/yyyy) :");
+			String dateWarranty = scanner.nextLine();
+			Date warrantyDate = covertStringtoDate(dateWarranty);
+			product = new Electronics(productCode, productName, productPrice, serviceCharge, warrantyDate);
+		}
+
+		return product;
+
+	}
+
+	private static Date covertStringtoDate(String date) throws ParseException { // To convert date in string format to
+																				// date format
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date covertedDate = formatter.parse(date);
+		return covertedDate;
+	}
+
+	public static Product buyProduct(ArrayList<Product> productList, ArrayList<Customer> customerList,
+			String customerCode) {
+		Scanner scanner = new Scanner(System.in);
+		int newC = 0; // For checking new customer or not
+		int productAvailable = 0; // For checking whether product available in the store
+		Product selectedProduct = null;
+		for (Customer customer : customerList) {
+			if (customer.getCustomerCode().compareTo(customerCode) == 0) {
+				newC = 1;
+			}
+		}
+		for (Product product : productList) {
+			if (product.getProductCode() != null) {
+				productAvailable = 1;
+			}
+		}
+		if (newC == 1)
+			System.out.println("Welcome again!!");
+		else
+			System.out.println("Welcome to your first purchase!!");
+
+		if (productAvailable == 1) {
+			System.out.println("Available Products in Store");
+			System.out.println("Product Code" + "      " + "Product Name" + "      " + "Product Price");
+			for (Product product : productList)
+				System.out.println(product.getProductCode() + "      " + product.getProductName() + "      "
+						+ product.getProductPrice());
+			System.out.println("Enter the product code you want to purchase - ");
+			String productCode = scanner.nextLine();
+			// Checking for the desired product in the product list
+			for (Product product : productList) {
+				if (product.getProductCode().compareTo(productCode) == 0) {
+					selectedProduct = product;
+					break;
+				}
+			}
+			if (selectedProduct == null) {
+				System.out.println("Product is not available.");
+			}
+
+		} else
+			System.out.println("No product available in the store.");
+		return selectedProduct;
+	}
+
+	public static void getProductService(Date currentDate, ArrayList<Customer> customerList) {
+
+		Fabrics fabrics;
+		Electronics electronics;
+		int newC = 0;
+		System.out.println("Enter Customer Code : ");
+		Scanner scanner = new Scanner(System.in);
+		String customerCode = scanner.nextLine();
+		for (Customer customer : customerList) {
+			if (customer.getCustomerCode().compareTo(customerCode) == 0) {
+				newC = 1;
+			}
+		}
+		if (newC == 1) {
+			System.out.println("Your products are : ");
+			for (Customer customer : customerList) {
+				if (customer.getCustomerCode().compareTo(customerCode) == 0) {
+					Product product = customer.getProduct();
+					System.out.println(product.getProductCode() + "		" + product.getProductName());
+				}
+			}
+
+			System.out.println("Enter product code : ");
+			String productCode = scanner.nextLine();
+
+			for (Customer customer : customerList) {
+				if (customer.getCustomerCode().compareTo(customerCode) == 0) {
+					Product product = customer.getProduct();
+					if (product.getProductCode().compareTo(productCode) == 0) {
+						if (product instanceof Fabrics) {
+							fabrics = (Fabrics) product;
+							fabrics.productExchange(product.getProductName());
+						} else if (product instanceof Electronics) {
+							electronics = (Electronics) product;
+							System.out.println("The product you bought is " + product.getProductName());
+							System.out.println("1. Repair	2. Replacement	3. Service");
+							int choice = scanner.nextInt();
+							switch (choice) {
+							case 1:
+								electronics.ProductRepair();
+								electronics.getServiceCharge()
+								break;
+							case 2:
+								electronics.warrantyReplacement(electronics.getWarrantyDate(), currentDate);
+								break;
+							case 3:
+								System.out.println(
+										"Your service is done. Service charge is " + electronics.getServiceCharge());
+								break;
+							}
+						}
+					}
+
+				}
+			}
+		} else
+			System.out.println("You have not purchased any product yet.");
+	}
+}

@@ -1,0 +1,9 @@
+1666248797029	Delete element
+1666254461220	Encapsulate field 'fabricSerialNo'
+1666254466999	Encapsulate field 'fabricSerialNoOriginal'
+1666254501633	Encapsulate field 'electronicSerialNo'
+1666254505875	Encapsulate field 'electronicSerialNoOriginal'
+1666257172922	Delete element
+1666257179281	Delete element
+1666257285239	Delete element
+1666259454740	Rename type 'FabricElectronicService'

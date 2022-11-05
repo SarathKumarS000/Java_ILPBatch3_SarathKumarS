@@ -1,0 +1,20 @@
+package com.bank.service;
+
+import java.util.Date;
+
+import com.bank.entity.Service;
+
+public class BankService {
+
+	public static void createService() {
+
+		Service service = new Service("SCD100", "Cash Deposit", "Cash Deposit", new Date(2022, 10, 27),
+				new Date(2022, 10, 27), new Date(2022, 10, 27));
+		System.out.println(service);
+	}
+
+	public static void createRateCard() {
+
+	}
+
+}

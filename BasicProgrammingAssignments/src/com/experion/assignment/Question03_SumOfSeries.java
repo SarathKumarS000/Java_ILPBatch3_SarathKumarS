@@ -1,0 +1,25 @@
+package com.experion.assignment;
+
+import java.util.Scanner;
+
+public class Question03_SumOfSeries {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		int number, sum = 0, sign = 1;
+		System.out.println("Enter an odd value :");
+		number = scanner.nextInt();
+		if (number % 2 == 0) {
+			System.out.println("Not an odd number.");
+		} else {
+			for (int index = 1; index <= number; index += 2) {
+				sum = sum + (index * sign);
+				sign = sign * -1;
+			}
+			System.out.println("Sum of series is " + sum);
+		}
+
+	}
+
+}

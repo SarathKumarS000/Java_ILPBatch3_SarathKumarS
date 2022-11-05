@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.canddella.service.Service"/>
+    <fullyQualifiedTypeName name="com.experion.entity.BankServices"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Account"/>
+    <fullyQualifiedTypeName name="com.experion.service.AccountService"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Card"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Loan"/>
+    <fullyQualifiedTypeName name="com.experion.service.CardAccounts"/>
+    <fullyQualifiedTypeName name="com.experion.service.LoanService"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Fabrics"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Electronics"/>
+    <fullyQualifiedTypeName name="com.experion.service.FabricService"/>
+    <fullyQualifiedTypeName name="com.experion.service.ElectronicsService"/>
+    <fullyQualifiedTypeName name="com.experion.service.Service"/>
+    <fullyQualifiedTypeName name="com.experion.service.FabricElectronicService"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Product"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Customer"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.Period"/>
+    <fullyQualifiedTypeName name="com.bank.service.BankService"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.bank.entity.Rate"/>
+    <fullyQualifiedTypeName name="java.security.Provider.Service"/>
+    <fullyQualifiedTypeName name="com.bank.entity.Service"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+</qualifiedTypeNameHistroy>
